@@ -1,0 +1,16 @@
+ul {
+    float: right;
+    li {
+        float: left;
+        list-style: none;
+        padding: 1rem 0.5rem;
+        a {
+            box-shadow: none;
+            color: #3a3a3a;
+            text-decoration: none;
+            &:hover {
+                color: #EE4938
+            }
+        }
+    }
+}
