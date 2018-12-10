@@ -6,7 +6,8 @@ import './style.scss'
 export default class Header extends React.PureComponent {
     render() {
         return(<div className="header">
-            <Logo height={60} width={60} />
+            <a href="/" alt="home">
+                <Logo height={60} width={60} /></a>
             <NAV />
             </div>)
     }

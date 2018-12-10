@@ -3,6 +3,9 @@
 .header {
     max-height: 6rem;
     overflow: hidden;
-    padding: 1rem 2rem;
+    padding: 1rem;
     font-weight: 700;
+    a {
+        box-shadow: none;
+    }
 }

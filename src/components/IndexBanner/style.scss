@@ -1,20 +1,20 @@
+@import '../../styles/variables';
+
 .banner{
-    font-size: 3rem;
     max-width: 70rem;
     margin: 0 auto;
     font-weight: 900;
-    color: #3a3a3a;
-    padding: 1rem 5rem;
-    line-height: 5rem;
+    color: $primary-color;
+    padding: 1rem;
     span {
-        color: #EE4938;
+        color: $secondary-color;
     }
     p a {
         font-weight: normal;
-        color: #757575;
+        color: $tertiary-color;
         box-shadow: none;
         &:hover {
-            color: #EE4938
+            color: $secondary-color;
         }
     }
 }

@@ -1,3 +1,5 @@
+@import '../../../../styles/variables';
+
 ul {
     float: right;
     li {
@@ -6,10 +8,10 @@ ul {
         padding: 1rem 0.5rem;
         a {
             box-shadow: none;
-            color: #3a3a3a;
+            color: $primary-color;
             text-decoration: none;
             &:hover {
-                color: #EE4938
+                color: $secondary-color;
             }
         }
     }
