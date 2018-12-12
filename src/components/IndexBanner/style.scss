@@ -1,20 +1,6 @@
-@import '../../styles/variables';
-
-.banner{
-    max-width: 70rem;
-    margin: 0 auto;
-    font-weight: 900;
-    color: $primary-color;
-    padding: 1rem;
-    span {
-        color: $secondary-color;
-    }
-    p a {
-        font-weight: normal;
-        color: $tertiary-color;
-        box-shadow: none;
-        &:hover {
-            color: $secondary-color;
-        }
+.banner {
+    text-align: center;
+    p {
+         font-size: 2.5rem;     
     }
 }

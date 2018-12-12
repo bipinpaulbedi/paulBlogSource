@@ -10848,6 +10848,13 @@ typography-normalize@^0.16.18:
   version "0.16.18"
   resolved "https://registry.yarnpkg.com/typography-normalize/-/typography-normalize-0.16.18.tgz#19e8db32c6881d3745b7d67dc63ee6f6cfb681d1"
 
+typography-theme-twin-peaks@^0.16.18:
+  version "0.16.18"
+  resolved "https://registry.yarnpkg.com/typography-theme-twin-peaks/-/typography-theme-twin-peaks-0.16.18.tgz#62fc26e800877f9173e63c56df4b89a8126b1c2a"
+  dependencies:
+    gray-percentage "^2.0.0"
+    typography-breakpoint-constants "^0.16.18"
+
 typography-theme-wordpress-2016@^0.16.18:
   version "0.16.18"
   resolved "https://registry.yarnpkg.com/typography-theme-wordpress-2016/-/typography-theme-wordpress-2016-0.16.18.tgz#bdca238ea43cabb9b590c299963c3fb8abc671af"
