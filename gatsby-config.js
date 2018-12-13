@@ -22,7 +22,7 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,
+      resolve: `gatsby-transformer-remark`,      
       options: {
         plugins: [
           {
@@ -46,6 +46,7 @@ module.exports = {
     'gatsby-transformer-sharp',
     `gatsby-plugin-sass`,
     `gatsby-plugin-feed`,
+    `gatsby-plugin-styled-components`,
     'gatsby-plugin-sharp',
     {
       resolve: `gatsby-plugin-manifest`,

@@ -1,10 +1,18 @@
 import React from 'react'
-import './style.scss'
+import styled from 'styled-components'
+
+const StyledNAV = styled.ul`
+    float: right;
+    li {
+        float: left;
+        list-style: none;
+        padding: 1rem 0.5rem;
+    }`
 
 export default class NAV extends React.PureComponent {
     render() {
         return(
-            <ul>
+            <StyledNAV>
                 <li>
                     <a title="Articles" href="#">articles</a>
                 </li>
@@ -14,6 +22,6 @@ export default class NAV extends React.PureComponent {
                 <li>
                     <a title="Search" href="/search">search</a>
                 </li>
-            </ul>)
+            </StyledNAV>)
     }
 }

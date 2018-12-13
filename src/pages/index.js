@@ -2,19 +2,24 @@ import React from 'react'
 import Header from '../components/Header'
 import IndexBanner from '../components/IndexBanner'
 import IndexKeyAreas from '../components/IndexKeyAreas'
-import './style.scss'
 import IndexCategories from '../components/IndexCategories';
+
+import styled from 'styled-components'
+const StyledHome = styled.div`
+margin: 0 auto;
+padding: 0rem 1rem;`
+
 
 export default class Home extends React.PureComponent {
     render() {
         return(
         <React.Fragment>
             <Header />
-            <div className="container">
+            <StyledHome>
                 <IndexBanner />
                 <IndexKeyAreas />
                 <IndexCategories />
-            </div>
+            </StyledHome>
         </React.Fragment>
         )
     }
