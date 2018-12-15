@@ -1,6 +1,6 @@
 import React from 'react'
-import Logo from '../../assets/logo.svg'
-import NAV from './components/NAV'
+import Logo from '../assets/logo.svg'
+import HeaderNav from './HeaderNav'
 import styled from 'styled-components'
 
 const StyledHeader = styled.div`
@@ -12,7 +12,7 @@ export default class Header extends React.PureComponent {
         return(<StyledHeader>
             <a href="/" alt="home">
                 <Logo height={60} width={60} /></a>
-            <NAV />
+            <HeaderNav />
             </StyledHeader>)
     }
 }

@@ -1,12 +1,23 @@
 import React from 'react'
-import SocialLinks from './components/SocialLinks'
+import SocialLinks from './SocialLinks'
 import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint';
 
 const StyledIndexBanner = styled.div`
     text-align: center;
     p {
-         font-size: 2.5rem;     
-    }`
+        font-size: 2.5rem;     
+    }
+
+    ${breakpoint('tablet')`
+    h2 {
+        font-size: 3rem;
+    }
+
+    p {
+        font-size: 4rem;
+    }`}
+`
 
 export default class IndexBanner extends React.PureComponent {
     render() {
