@@ -1,7 +1,7 @@
 ---
 title: L1 & L2 model regularizations techniques
 categories: machine-learning
-tags: regularization, data-modelling, feature-modelling
+tags: [regularization, data-modelling, feature-modelling, machine-learning, article]
 comments: true
 subTitle: feature engineering for machine learning models
 date: "2018-10-12T00:00:00.000Z"

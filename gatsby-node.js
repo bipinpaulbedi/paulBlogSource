@@ -1,4 +1,5 @@
 const path = require('path')
+const _ = require("lodash")
 const { createFilePath } = require('gatsby-source-filesystem')
 
 exports.createPages = ({ graphql, actions }) => {
@@ -6,6 +7,8 @@ exports.createPages = ({ graphql, actions }) => {
 
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
+    const tagTemplate = path.resolve("src/templates/blog-tags.js")
+    const categoryTemplate = path.resolve("src/templates/blog-categories.js")
     resolve(
       graphql(
         `
@@ -18,6 +21,8 @@ exports.createPages = ({ graphql, actions }) => {
                   }
                   frontmatter {
                     title
+                    tags
+                    categories
                   }
                 }
               }
@@ -47,6 +52,51 @@ exports.createPages = ({ graphql, actions }) => {
             },
           })
         })
+
+        // Tag pages:
+        let tags = []
+        // Iterate through each post, putting all found tags into `tags`
+        _.each(posts, edge => {
+          if (_.get(edge, "node.frontmatter.tags")) {
+            tags = tags.concat(edge.node.frontmatter.tags)
+          }
+        })
+        // Eliminate duplicate tags
+        tags = _.uniq(tags)
+
+          // Make tag pages
+        tags.forEach(tag => {
+          createPage({
+            path: `/tags/${_.kebabCase(tag)}/`,
+            component: tagTemplate,
+            context: {
+              tag,
+            },
+          })
+        })
+
+        // Category pages:
+        let categories = []
+        // Iterate through each post, putting all found categories into `categories`
+        _.each(posts, edge => {
+          if (_.get(edge, "node.frontmatter.categories")) {
+            categories = categories.concat(edge.node.frontmatter.categories)
+          }
+        })
+        // Eliminate duplicate categories
+        categories = _.uniq(categories)
+
+          // Make tag pages
+        categories.forEach(category => {
+        createPage({
+          path: `/categories/${_.kebabCase(category)}/`,
+          component: categoryTemplate,
+          context: {
+            category,
+            },
+          })
+        })
+
       })
     )
   })

@@ -1,53 +1,58 @@
 import React from 'react'
 import Helmet from 'react-helmet'
 import { Link, graphql } from 'gatsby'
+import Header from '../components/Header'
+import Footer from '../components/Footer'
+import styled from 'styled-components'
+import breakpoint from 'styled-components-breakpoint';
+import { DiscussionEmbed } from 'disqus-react';
 
-import Bio from '../components/Bio'
-import Layout from '../components/Layout'
-import { rhythm, scale } from '../utils/typography'
+const StyledBlog = styled.div`
+margin: 0 auto;
+padding: 0rem 1rem;
+div {
+  text-align: justify;
+}
+ul.navigator {
+  list-style-type: none;
+  text-align : center;
+}
 
-class BlogPostTemplate extends React.Component {
+${breakpoint('tablet')`
+    width: 80%;`}
+`
+
+export default class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
     const siteDescription = post.excerpt
     const { previous, next } = this.props.pageContext
+    const disqusShortname = 'paul-blog';
+    const disqusConfig = {
+        url: `{siteURL}}{node.fields.slug}`,
+        identifier: post.fields.slug,
+        title: post.frontmatter.title,
+    };
 
-    return (
-      <Layout location={this.props.location} title={siteTitle}>
+    return (<React.Fragment>
+        <Header />
         <Helmet
           htmlAttributes={{ lang: 'en' }}
           meta={[{ name: 'description', content: siteDescription }]}
           title={`${post.frontmatter.title} | ${siteTitle}`}
         />
-        <h1>{post.frontmatter.title}</h1>
-        <p
-          style={{
-            ...scale(-1 / 5),
-            display: 'block',
-            marginBottom: rhythm(1),
-            marginTop: rhythm(-1),
-          }}
-        >
-          {post.frontmatter.date}
-        </p>
-        <div dangerouslySetInnerHTML={{ __html: post.html }} />
-        <hr
-          style={{
-            marginBottom: rhythm(1),
-          }}
-        />
-        <Bio />
+        <StyledBlog>
+          <h1><a href="#" alt="{post.frontmatter.title}">{post.frontmatter.title}</a></h1>
+          <p>
+            {post.frontmatter.date}
+          </p>
+          <div dangerouslySetInnerHTML={{ __html: post.html }} />
+          <p><a href={"/categories/" + post.frontmatter.categories} alt={post.frontmatter.categories}>{post.frontmatter.categories}</a></p>
+        <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
+        <hr/>
 
-        <ul
-          style={{
-            display: 'flex',
-            flexWrap: 'wrap',
-            justifyContent: 'space-between',
-            listStyle: 'none',
-            padding: 0,
-          }}
-        >
+        <ul className="navigator">
           <li>
             {
               previous &&
@@ -65,28 +70,35 @@ class BlogPostTemplate extends React.Component {
             }
           </li>
         </ul>
-      </Layout>
+        </StyledBlog>
+        <Footer />
+        </React.Fragment>
     )
   }
 }
-
-export default BlogPostTemplate
 
 export const pageQuery = graphql`
   query BlogPostBySlug($slug: String!) {
     site {
       siteMetadata {
         title
+        description
         author
+        siteUrl
       }
     }
     markdownRemark(fields: { slug: { eq: $slug } }) {
       id
       excerpt
       html
+      fields {
+        slug
+      }
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        tags
+        categories
       }
     }
   }

@@ -1,7 +1,7 @@
 ---
 title: Developers guide to designing REST endpoints
 categories: design-patterns
-tags: api, design
+tags: [api, design, design-patterns, article]
 comments: true
 subTitle: coding bluprint for pragmatic rest api developers
 date: "2018-10-10T00:00:00.000Z"

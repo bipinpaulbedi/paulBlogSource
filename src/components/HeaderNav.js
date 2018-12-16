@@ -18,7 +18,7 @@ export default class HeaderNav extends React.PureComponent {
         return(
             <StyledHeaderNav>
                 <li>
-                    <a title="Articles" href="#">articles</a>
+                    <a title="Articles" href="/tags/article">articles</a>
                 </li>
                 <li>
                     <a title="Search" href="/search">search</a>
