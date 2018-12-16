@@ -3,7 +3,7 @@ module.exports = {
     title: 'paul blog',
     author: 'Bipin Paul Bedi',
     description: 'thoughts, stories & ideas.',
-    siteUrl: 'https://www.bipinpaulbedi.com/'
+    siteUrl: 'https://www.bipinpaulbedi.com'
   },
   plugins: [
     'gatsby-plugin-react-helmet',

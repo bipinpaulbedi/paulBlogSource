@@ -31,7 +31,7 @@ export default class Home extends React.PureComponent {
             <StyledHome>
                 <IndexBanner />
                 <IndexKeyAreas />
-                <IndexPost posts={this.props.data.allMarkdownRemark.edges} siteURL={this.props.data.site.siteUrl} />
+                <IndexPost posts={this.props.data.allMarkdownRemark.edges} siteURL={this.props.data.site.siteMetadata.siteUrl} />
             </StyledHome>
             <Footer />
         </React.Fragment>

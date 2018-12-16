@@ -37,7 +37,7 @@ export default class IndexPost extends React.PureComponent {
             {posts.map(({ node }) => {
             const disqusShortname = 'paul-blog';
             const disqusConfig = {
-                url: `{siteURL}}{node.fields.slug}`,
+                url: siteURL + node.fields.slug,
                 identifier: node.fields.slug,
                 title: node.frontmatter.title,
             };

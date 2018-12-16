@@ -26,11 +26,12 @@ export default class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
     const siteTitle = this.props.data.site.siteMetadata.title
+    const siteURL = this.props.data.site.siteMetadata.siteUrl
     const siteDescription = post.excerpt
     const { previous, next } = this.props.pageContext
     const disqusShortname = 'paul-blog';
     const disqusConfig = {
-        url: `{siteURL}}{node.fields.slug}`,
+        url: siteURL + post.fields.slug,
         identifier: post.fields.slug,
         title: post.frontmatter.title,
     };
