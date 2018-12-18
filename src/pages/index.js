@@ -7,6 +7,7 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
 import breakpoint from 'styled-components-breakpoint';
+import { graphql } from 'gatsby'
 
 const StyledHome = styled.div`
 margin: 0 auto;
