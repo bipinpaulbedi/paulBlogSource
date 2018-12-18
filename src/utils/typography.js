@@ -1,7 +1,7 @@
 import Typography from 'typography'
-import paul from 'paul-typography-theme'
+import theme from '@bipinpaulbedi/paul-blog-typography-theme'
 
-const typography = new Typography(paul)
+const typography = new Typography(theme)
 
 // Hot reload typography in development.
 if (process.env.NODE_ENV !== 'production') {
