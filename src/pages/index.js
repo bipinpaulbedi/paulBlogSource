@@ -14,7 +14,7 @@ margin: 0 auto;
 padding: 0rem 1rem;
 
 ${breakpoint('tablet')`
-    width: 80%;`}
+    width: 70%;`}
 `
 
 

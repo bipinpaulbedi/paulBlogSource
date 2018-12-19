@@ -60,7 +60,7 @@ Some developers advocate as to keep the version information in headers. But API 
 
 In certain cases, API calls that sends a response which is not a resource e.g. Calculate, Translate are not uncommon depending on the domain.
 In these cases, Use verbs not nouns e.g. /convert?from=USD&to=AUD&amount=100  
-Make it clear in your API documentation that these “non-resource” scenarios are different, maybe in you swagger docs.
+Make it clear in your API documentation that these “non-resource” scenarios are different, maybe in you swagger docs.  
     
 **How many formats shall we support?**
 
@@ -69,27 +69,27 @@ If the default form is JSON, in the response properties try using camelCase for 
 
 **Any other tips and tricks?**
 
-*Tip1:*  
+_Tip1:_  
 A simple can be verb based resourceful API but for complex scenarios use google model
-e.g.
-/search?q=xxx
-/user?q=xxx
-/location/1234/user=xxx – scoped 
-/search.xml?q=xxx – formatted
+e.g.  
+/search?q=xxx  
+/user?q=xxx  
+/location/1234/user=xxx – scoped  
+/search.xml?q=xxx – formatted  
 
-*Tip2:*  
+_Tip2:_  
 Consolidate API under a single domain with segregation for environments following a standard pattern e.g.
 api.xxx.com
 uat-api.xxx.com
 dev-api.xxx.com
 
-*Tip3:*  
+_Tip3:_  
 Use standard known authentication/authorization methodologies e.g. oAuth2.0 etc
 
-*Tip4:*  
+_Tip4:_  
 Try to complement your API with SDK
 
-*Tip5:*  
+_Tip5:_  
 Using POST to emulate PUT, DELETE, PATCH. If your development platform or firewall rules prevent you from calling HTTP methods like PUT, PATCH or DELETE, use the X-HTTP-Method-Override header. Pass the method you want to use in the X-HTTP-Method-Override header and make your call using the POST method
 
 **What API design pattern is an ideal choice in most cases?**
