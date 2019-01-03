@@ -19,52 +19,52 @@ ${breakpoint('tablet')`
 
 
 export default class Home extends React.PureComponent {
-    render() {
-        const {title, description }  = this.props.data.site.siteMetadata
-        return(
-        <React.Fragment>
-            <Header />
-            <Helmet
-            htmlAttributes={{ lang: 'en' }}
-            meta={[{ name: 'description', content: description }]}
-            title={title}
-            />
-            <StyledHome>
-                <IndexBanner />
-                <IndexKeyAreas />
-                <IndexPost posts={this.props.data.allMarkdownRemark.edges} siteURL={this.props.data.site.siteMetadata.siteUrl} />
-            </StyledHome>
-            <Footer />
-        </React.Fragment>
-        )
-    }
+  render() {
+    const { title, description } = this.props.data.site.siteMetadata
+    return (
+      <React.Fragment>
+        <Header />
+        <Helmet
+          htmlAttributes={{ lang: 'en' }}
+          meta={[{ name: 'description', content: description }]}
+          title={title}
+        />
+        <StyledHome>
+          <IndexBanner />
+          <IndexKeyAreas />
+          <IndexPost posts={this.props.data.allMarkdownRemark.edges} />
+        </StyledHome>
+        <Footer />
+      </React.Fragment>
+    )
+  }
 }
 
 export const pageQuery = graphql`
 query {
-    site {
-      siteMetadata {
-        title
-        description
-        author
-        siteUrl
-      }
+  site {
+    siteMetadata {
+      title
+      description
+      author
+      siteUrl
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, limit: 1) {
-      edges {
-        node {
-          id
-          excerpt
-          fields {
-            slug
-          }
-          html
-          frontmatter {
-            date(formatString: "MMMM DD, YYYY")
-            title
-          }
+  }
+  allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    edges {
+      node {
+        id
+        excerpt
+        fields {
+          slug
+        }          
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          year: date(formatString: "YYYY")
+          title
         }
       }
     }
   }
+}
 `

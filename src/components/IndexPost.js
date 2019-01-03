@@ -1,62 +1,38 @@
 import React from 'react'
-import { Link } from 'gatsby'
 import styled from 'styled-components'
-import { DiscussionEmbed } from 'disqus-react';
 import breakpoint from 'styled-components-breakpoint';
+import * as R from 'ramda';
+import IndexPostList from './IndexPostList';
+import { pallet } from '@bipinpaulbedi/paul-blog-typography-theme'
 
 const StyledLatest = styled.div`
+text-align: center;
 font-weight: bold;
+div {
+  color: ${pallet.secondary}
+}
 ${breakpoint('tablet')`
 font-size: 1.5rem;
 `}
 `
-
-const StyledLatestPost = styled.h3`
-margin: 0.5rem 0rem
-font-weight: bold;
-${breakpoint('tablet')`
-font-size: 2rem;
-`}
-`
-
-const StyledSmall = styled.small`
-${breakpoint('tablet')`
-font-size: 1.2rem;
-`}
-`
-const StyledHtml = styled.p`
-${breakpoint('tablet')`
-font-size: 1.2rem;
-`}
-`
-
 export default class IndexPost extends React.PureComponent {
-    render() {
-        const { posts, siteURL } = this.props;
-        return(<React.Fragment>
-            {posts.map(({ node }) => {
-            const disqusShortname = 'paul-blog';
-            const disqusConfig = {
-                url: siteURL + node.fields.slug,
-                identifier: node.fields.slug,
-                title: node.frontmatter.title,
-            };
-            const title = node.frontmatter.title || node.fields.slug
+  render() {
+    const { posts } = this.props;
+    const groupedPosts = R.groupBy((ele) => { return ele.node.frontmatter.year }, posts);
+    const elems = Object.keys(groupedPosts);
+    return (<StyledLatest>
+      Latest though, story or idea...
+      {elems.map((ele) => {
+        return (<React.Fragment>
+          <div>{ele}</div>
+          {groupedPosts[ele].map(({ node }) => {
             return (
-              <div key={node.fields.slug}>
-              <StyledLatest>Latest though, story or idea...</StyledLatest>
-                <StyledLatestPost>
-                  <Link to={node.fields.slug}>
-                    {title}
-                  </Link>
-                </StyledLatestPost>
-                <StyledSmall>{node.frontmatter.date}</StyledSmall>
-                <StyledHtml dangerouslySetInnerHTML={{ __html: node.html }} />
-                <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
-              </div>
+              <IndexPostList node={node}></IndexPostList>
             )
           })}
-          </React.Fragment>)
-    }
+        </React.Fragment>)
+      })}
+    </StyledLatest>)
+  }
 }
 

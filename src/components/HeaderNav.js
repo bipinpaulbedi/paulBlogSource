@@ -15,13 +15,10 @@ font-size: 1.5rem;
 
 export default class HeaderNav extends React.PureComponent {
     render() {
-        return(
+        return (
             <StyledHeaderNav>
                 <li>
-                    <a title="Articles" href="/tags/article">articles</a>
-                </li>
-                <li>
-                    <a title="Search" href="/search">search</a>
+                    <a title="Tags" href="/tags">Tags</a>
                 </li>
             </StyledHeaderNav>)
     }

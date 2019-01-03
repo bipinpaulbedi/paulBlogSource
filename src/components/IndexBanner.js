@@ -24,11 +24,11 @@ const StyledIndexBanner = styled.div`
 
 export default class IndexBanner extends React.PureComponent {
     render() {
-        return(
-        <StyledIndexBanner>
-            <h2>Hello, I'm <a className="nameLink" href="#" alt=""Home>Bipin</a> & I craft technology products. This site chronicles my thoughts, stories and ideas.</h2>
-            <p><SocialLinks /></p>
-            <hr />
-        </StyledIndexBanner>)
+        return (
+            <StyledIndexBanner>
+                <h2>Hello, I'm <a className="nameLink" href="#" alt="">Bipin</a> & I craft technology products. This site chronicles my thoughts, stories and ideas.</h2>
+                <p><SocialLinks /></p>
+                <hr />
+            </StyledIndexBanner>)
     }
 }
