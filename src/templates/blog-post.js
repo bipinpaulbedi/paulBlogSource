@@ -6,6 +6,7 @@ import Footer from '../components/Footer'
 import styled from 'styled-components'
 import breakpoint from 'styled-components-breakpoint';
 import { DiscussionEmbed } from 'disqus-react';
+import { pallet } from '@bipinpaulbedi/paul-blog-typography-theme'
 
 const StyledBlog = styled.div`
 margin: 0 auto;
@@ -22,6 +23,16 @@ ${breakpoint('tablet')`
     width: 80%;`}
 `
 
+const StyleBlogSubHeading = styled.p`
+color: ${pallet.secondary}
+`
+
+const StyleBlogDate = styled.p`
+color: ${pallet.tertiary};
+font-style: italic;
+text-align: right
+`
+
 export default class BlogPostTemplate extends React.Component {
   render() {
     const post = this.props.data.markdownRemark
@@ -31,27 +42,30 @@ export default class BlogPostTemplate extends React.Component {
     const { previous, next } = this.props.pageContext
     const disqusShortname = 'paul-blog';
     const disqusConfig = {
-        url: siteURL + post.fields.slug,
-        identifier: post.fields.slug,
-        title: post.frontmatter.title,
+      url: siteURL + post.fields.slug,
+      identifier: post.fields.slug,
+      title: post.frontmatter.title,
     };
 
     return (<React.Fragment>
-        <Header />
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          meta={[{ name: 'description', content: siteDescription }]}
-          title={`${post.frontmatter.title} | ${siteTitle}`}
-        />
-        <StyledBlog>
-          <h1><a href="#" alt="{post.frontmatter.title}">{post.frontmatter.title}</a></h1>
-          <p>
-            {post.frontmatter.date}
-          </p>
-          <div dangerouslySetInnerHTML={{ __html: post.html }} />
-          <p><a href={"/categories/" + post.frontmatter.categories} alt={post.frontmatter.categories}>{post.frontmatter.categories}</a></p>
+      <Header />
+      <Helmet
+        htmlAttributes={{ lang: 'en' }}
+        meta={[{ name: 'description', content: siteDescription }]}
+        title={`${post.frontmatter.title} | ${siteTitle}`}
+      />
+      <StyledBlog>
+        <h1><a href="#" alt="{post.frontmatter.title}">{post.frontmatter.title}</a></h1>
+        <StyleBlogSubHeading>
+          {post.frontmatter.subTitle}
+        </StyleBlogSubHeading>
+        <StyleBlogDate>
+          {post.frontmatter.date}
+        </StyleBlogDate>
+        <div dangerouslySetInnerHTML={{ __html: post.html }} />
+        <p><a href={"/categories/" + post.frontmatter.categories} alt={post.frontmatter.categories}>{post.frontmatter.categories}</a></p>
         <DiscussionEmbed shortname={disqusShortname} config={disqusConfig} />
-        <hr/>
+        <hr />
 
         <ul className="navigator">
           <li>
@@ -71,9 +85,9 @@ export default class BlogPostTemplate extends React.Component {
             }
           </li>
         </ul>
-        </StyledBlog>
-        <Footer />
-        </React.Fragment>
+      </StyledBlog>
+      <Footer />
+    </React.Fragment>
     )
   }
 }
@@ -99,6 +113,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         tags
+        subTitle
         categories
       }
     }

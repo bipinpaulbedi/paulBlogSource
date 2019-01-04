@@ -19,7 +19,7 @@ export default class IndexPost extends React.PureComponent {
   render() {
     const { posts } = this.props;
     const groupedPosts = R.groupBy((ele) => { return ele.node.frontmatter.year }, posts);
-    const elems = Object.keys(groupedPosts);
+    const elems = Object.keys(groupedPosts).sort().reverse();
     return (<StyledLatest>
       Latest though, story or idea...
       {elems.map((ele) => {
