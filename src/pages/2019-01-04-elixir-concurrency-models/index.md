@@ -1,7 +1,7 @@
 ---
 title: phoenix/elixir - concurrency actor model with 'let it crash' philosophy
 categories: technology
-tags: [elixir, phoenix, actor-model, design-patterns, functional-programming, article]
+tags: [elixir, phoenix, actor-model, design-patterns, functional-programming, technology, article]
 comments: true
 subTitle: concurrent and/or parallel processing model
 date: "2019-01-04T00:00:00.000Z"
