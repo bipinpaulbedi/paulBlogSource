@@ -9,10 +9,10 @@ const StyledHeader = styled.div`
 
 export default class Header extends React.PureComponent {
     render() {
-        return(<StyledHeader>
-            <a href="/" alt="home">
+        return (<StyledHeader>
+            <a href="/" aria-label="Home" alt="home">
                 <Logo height={60} width={60} /></a>
             <HeaderNav />
-            </StyledHeader>)
+        </StyledHeader>)
     }
 }
