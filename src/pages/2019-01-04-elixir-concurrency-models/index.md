@@ -14,13 +14,13 @@ Functional programming avoids the problems associated with shared mutable state 
 Certainly, there are some concurrent programs that will always be nondeterministic. And this is unavoidable—some problems require solutions that are intrinsically dependent on the details of timing. But it’s not the case that all parallel programs are necessarily nondeterministic. The value of the sum of the numbers between 0 and 10,000 won’t change just because we add those numbers together in parallel instead of sequentially
 
 Microsoft [Orleans](https://dotnet.github.io/orleans/) is .net implementation of Actor Model but we will focus on programming language which was build with focus on concurrent execution. Elixir/Erlang: Erlang is a programming language used to build massively scalable soft real-time systems with requirements on high availability. Some of its uses are in telecoms, banking, e-commerce, computer telephony and instant messaging. Erlang's runtime system has built-in support for concurrency, distribution and fault tolerance.
-OTP is set of Erlang libraries and design principles providing middle-ware to develop these systems. It includes its own distributed database, applications to interface towards other languages, debugging and release handling tools. Erlang runs on VM called BEAM which is esentially a [process virtual machine](https://en.wikipedia.org/wiki/Virtual_machine)
+OTP is set of Erlang libraries and design principles providing middle-ware to develop these systems. It includes its own distributed database, applications to interface towards other languages, debugging and release handling tools. Erlang runs on VM called BEAM which is essentially a [process virtual machine](https://en.wikipedia.org/wiki/Virtual_machine)
 
 `In Erlang, and therefore Elixir, an actor is called a process. In most environments a process is a heavyweight entity that consumes lots of resources and is expensive to create. An Elixir process, by contrast, is very lightweight—lighter weight even than most systems’ threads, both in terms of resource consumption and startup cost. Elixir programs typically create thousands of processes without problems and don’t normally need to resort to the equivalent of thread pools`
 
 **Elixir actor by example**  
 
-Elixir actors communicate via message passing using mailboxes, which are queues by data structure. For our example we will create a md5 hash generater which based on a string return a md5 value of string. If the value is already exiting it will not recompute to save cpu resource but send it from in memory cache.
+Elixir actors communicate via message passing using mailboxes, which are queues by data structure. For our example we will create a md5 hash generator which based on a string return a md5 value of string. If the value is already exiting it will not recompute to save cpu resource but send it from in memory cache.
 
 `defmodule HashIt do`  
 &nbsp;&nbsp;&nbsp;&nbsp;`def loop do`  
@@ -104,14 +104,14 @@ or we can define methods to start, compute also provide it a name instead of usi
 &nbsp;&nbsp;&nbsp;&nbsp;`end`  
 `end`  
 
-The program can be started via start method and uses pseudo-variable __MODULE__, which evaluates to the name of the current module. The Process.register registers the pid as name :hashit. Moreover instead of printing the hash value it now returs it to the sender, which helps in bi-directional communication. The carot ^ symbol in {:ok, ^ref, reply} denotes we want to match the value rather than binding it. The [pattern matching](https://elixir-lang.org/getting-started/pattern-matching.html) in elixir is used to match inside a data structure. Effectively we can now execute the HashIt module via
+The program can be started via start method and uses pseudo-variable __MODULE__, which evaluates to the name of the current module. The Process.register registers the pid as name :hashit. Moreover instead of printing the hash value it now returns it to the sender, which helps in bi-directional communication. The carot ^ symbol in {:ok, ^ref, reply} denotes we want to match the value rather than binding it. The [pattern matching](https://elixir-lang.org/getting-started/pattern-matching.html) in elixir is used to match inside a data structure. Effectively we can now execute the HashIt module via
 
 `:hashItMD5 |> HashIt.start([%{}, :md5])`  
 `:hashItMD5 |> HashIt.compute("bipin")`
 
 **Adding check and compute logic**  
 
-Adding the return value to check in cache befor recomputing above module can be refactured as
+Adding the return value to check in cache before recomputing above module can be refactured as
 
 `defmodule HashIt do`  
 &nbsp;&nbsp;&nbsp;&nbsp;`def start(name, strg, cryptoType) do`  
@@ -167,7 +167,7 @@ but normal exit will keep the linked process active, viz:
 `Process.info(:hashItSHA256, :status)`  
 <small>{:status, :waiting}</small>  
 
-This implies we can set the system trap to capture other processes exit, when can be utilized to create suprevisor and re start the system if the process crashes. We can set Process.flag(:trap_exit, true) to capture the exit of linked process and take appropriate action. In our example of HashIt a supervisor can be created as:  
+This implies we can set the system trap to capture other processes exit, when can be utilized to create supervisor and re start the system if the process crashes. We can set Process.flag(:trap_exit, true) to capture the exit of linked process and take appropriate action. In our example of HashIt a supervisor can be created as:  
 
 `defmodule HashItSupervisor do`  
 &nbsp;&nbsp;&nbsp;&nbsp;`def start do`  
@@ -182,7 +182,7 @@ This implies we can set the system trap to capture other processes exit, when ca
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`receive do`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{:EXIT, ^pid, :normal} -> IO.puts("Hash It exited normally")`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`:ok`  
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{:EXIT, ^pid, reason} -> IO.puts("Hash It failed withreason #{inspect reason}...restarting")`  
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`{:EXIT, ^pid, reason} -> IO.puts("Hash It failed with reason #{inspect reason}...restarting")`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`loop`  
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`end`  
 &nbsp;&nbsp;&nbsp;&nbsp;`end`  
@@ -190,7 +190,7 @@ This implies we can set the system trap to capture other processes exit, when ca
 `----------`  
 `HashItSupervisor.start`  
 
-If the HashIt system now crashes it is captured by HashItSupervisor and is restarted. If the two processes are dependent on each other and can result in deadlock or infinite waiting because of crashing of sender the receiver can be guraded using timeout clause in receive do loop by using after clause. example:
+If the HashIt system now crashes it is captured by HashItSupervisor and is restarted. If the two processes are dependent on each other and can result in deadlock or infinite waiting because of crashing of sender the receiver can be guarded using timeout clause in receive do loop by using after clause. example:
 
 `receive do`  
 &nbsp;&nbsp;&nbsp;&nbsp;`{:ok, ^ref, value} -> IO.puts(value)`  
@@ -199,7 +199,7 @@ If the HashIt system now crashes it is captured by HashItSupervisor and is resta
 
 **Scaling to multiple nodes/computers**  
 
-The actor programming naturally supports an approach to writing fault-tolerant code that leverages this observation: the error-kernel pattern. In the elixir system the kernal is the root supervisor which can start other supervisors or workers. When we create an elixir virtual machine we create a node we can create nodes multiple nodes on same system or on network of computer by naming them using --name or --sname option. To make multiple nodes part of same cluster it must use same --cookie name argument. This is results in running your system across multiple systems. To multiple connect nodes we can use connect function
+The actor programming naturally supports an approach to writing fault-tolerant code that leverages this observation: the error-kernel pattern. In the elixir system the kernel is the root supervisor which can start other supervisors or workers. When we create an elixir virtual machine we create a node we can create nodes multiple nodes on same system or on network of computer by naming them using --name or --sname option. To make multiple nodes part of same cluster it must use same --cookie name argument. This results in running your system across multiple systems. To multiple connect nodes we can use connect function
 
 `iex(node1@192.168.0.10)1> Node.self`  
 <small>:"node1@192.168.0.10"</small>  
@@ -214,6 +214,6 @@ Now use Node.Spwan to start worker or supervisors and use :global.register_name(
 
 **Important notes**  
 
-For ths explanatory purpose we used dynamic atom naming above. However, naming dynamic processes with atoms is a terrible idea! If we use atoms, we would need to convert the name (often received from an external client) to atoms, and we should never convert user input to atoms. This is because atoms are not garbage collected. Once an atom is created, it is never reclaimed. Generating atoms from user input would mean the user can inject enough different names to exhaust our system memory!  
+For this explanatory purpose we used dynamic atom naming above. However, naming dynamic processes with atoms is a terrible idea! If we use atoms, we would need to convert the name (often received from an external client) to atoms, and we should never convert user input to atoms. This is because atoms are not garbage collected. Once an atom is created, it is never reclaimed. Generating atoms from user input would mean the user can inject enough different names to exhaust our system memory!  
 
-In practice, it is more likely you will reach the Erlang VM limit for the maximum number of atoms before you run out of memory, which will bring your system down regardless. Morover Supervisor model used above can result in inconsistent naming convention across various modules and libraries. Thus elixir provides a standard protocol to defining,starting and maintaing workers using efficient buketed methodologyusing [GenServer](https://elixir-lang.org/getting-started/mix-otp/genserver.html), provding standard call, cast and info method implementation for various operation.
+In practice, it is more likely you will reach the Erlang VM limit for the maximum number of atoms before you run out of memory, which will bring your system down regardless. Moreover Supervisor model used above can result in inconsistent naming convention across various modules and libraries. Thus elixir provides a standard protocol to defining,starting and maintaining workers using efficient bucketed methodology using [GenServer](https://elixir-lang.org/getting-started/mix-otp/genserver.html), providing standard call, cast and info method implementation for various operation.
