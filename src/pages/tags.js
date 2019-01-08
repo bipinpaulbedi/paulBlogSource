@@ -15,7 +15,10 @@ span {
 }
 
 ${breakpoint('tablet')`
-    width: 80%;`}
+    width: 75%;`}
+
+${breakpoint('desktop')`
+    width: 50%;`}
 `
 
 

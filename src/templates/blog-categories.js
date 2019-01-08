@@ -15,7 +15,10 @@ ul {
 }
 
 ${breakpoint('tablet')`
-    width: 80%;`}
+    width: 75%;`}
+
+${breakpoint('desktop')`
+    width: 50%;`}
 `
 
 export default class BlogCategoryTemplate extends React.Component {
@@ -24,35 +27,35 @@ export default class BlogCategoryTemplate extends React.Component {
     const { edges, totalCount } = this.props.data.allMarkdownRemark
     const { category } = this.props.pageContext
     const categoryHeader = `${totalCount} post${
-        totalCount === 1 ? "" : "s"
+      totalCount === 1 ? "" : "s"
       } tagged with "${category}"`
     const siteDescription = categoryHeader
-    
+
 
     return (<React.Fragment>
-        <Header />
-        <Helmet
-          htmlAttributes={{ lang: 'en' }}
-          meta={[{ name: 'description', content: siteDescription }]}
-          title={siteTitle}
-        />
-        <StyledBlogCategory>
-          <h1><a href={category} alt="{categoryHeader}">{categoryHeader}</a></h1>
-          <ul>
-            {edges.map(({ node }) => {
+      <Header />
+      <Helmet
+        htmlAttributes={{ lang: 'en' }}
+        meta={[{ name: 'description', content: siteDescription }]}
+        title={siteTitle}
+      />
+      <StyledBlogCategory>
+        <h1><a href={category} alt="{categoryHeader}">{categoryHeader}</a></h1>
+        <ul>
+          {edges.map(({ node }) => {
             const { title } = node.frontmatter
             const { slug } = node.fields
             return (
-                <li key={slug}>
+              <li key={slug}>
                 <Link to={slug}>{title}</Link>
-                </li>
-                )
-            })}
-          </ul>
-        </StyledBlogCategory>
-        <hr/>
-        <Footer />
-        </React.Fragment>
+              </li>
+            )
+          })}
+        </ul>
+      </StyledBlogCategory>
+      <hr />
+      <Footer />
+    </React.Fragment>
     )
   }
 }

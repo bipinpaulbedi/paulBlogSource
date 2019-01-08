@@ -7,14 +7,17 @@ import Helmet from 'react-helmet'
 import styled from 'styled-components'
 import Footer from '../components/Footer'
 import breakpoint from 'styled-components-breakpoint';
-import { graphql } from 'gatsby'
+import { graphql } from 'gatsby';
 
 const StyledHome = styled.div`
 margin: 0 auto;
 padding: 0rem 1rem;
 
 ${breakpoint('tablet')`
-    width: 70%;`}
+    width: 75%;`}
+
+${breakpoint('desktop')`
+    width: 50%;`}
 `
 
 
@@ -29,6 +32,9 @@ export default class Home extends React.PureComponent {
           meta={[{ name: 'description', content: description }]}
           title={title}
         />
+        <Helmet>
+          <noscript>Your browser does not support JavaScript!</noscript>
+        </Helmet>
         <StyledHome>
           <IndexBanner />
           <IndexKeyAreas />

@@ -20,7 +20,10 @@ ul.navigator {
 }
 
 ${breakpoint('tablet')`
-    width: 80%;`}
+    width: 75%;`}
+
+${breakpoint('desktop')`
+    width: 50%;`}
 `
 
 const StyleBlogSubHeading = styled.p`

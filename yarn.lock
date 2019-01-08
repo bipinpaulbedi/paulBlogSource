@@ -698,9 +698,9 @@
     to-fast-properties "^2.0.0"
 
 "@bipinpaulbedi/paul-blog-typography-theme@^1.0.1":
-  version "1.0.2"
-  resolved "https://registry.yarnpkg.com/@bipinpaulbedi/paul-blog-typography-theme/-/paul-blog-typography-theme-1.0.2.tgz#927fedb0d96c34cae49a4075a191c609006f476e"
-  integrity sha512-LOCM2qoc+TX4J0TYdOlJsNz6QyQQyqIdVxyXr27RW4Ho0khm0W0Mp1QNj5r37j5e5KgCKRtU6lOnBGwuP6mJJQ==
+  version "1.0.3"
+  resolved "https://registry.yarnpkg.com/@bipinpaulbedi/paul-blog-typography-theme/-/paul-blog-typography-theme-1.0.3.tgz#fa18af859de6580752dda978d44360ce2ef31785"
+  integrity sha512-WchYHokCBB73uf3Gx3mgCU4h9YKjTP18sjgEl1SHoyffDpFdEEvzDyk5C+0XDs4Gsqa7viO5KAi/w6DOlQT9zA==
   dependencies:
     gray-percentage "^2.0.0"
     typography-breakpoint-constants "^0.16.18"
