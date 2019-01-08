@@ -15,6 +15,7 @@ const StyledIndexBanner = styled.div`
     ${breakpoint('tablet')`
     h2 {
         font-size: 3rem;
+        margin-top: 1rem;
     }
 
     p {
@@ -28,7 +29,6 @@ export default class IndexBanner extends React.PureComponent {
             <StyledIndexBanner>
                 <h2>Hello, I'm <a className="nameLink" href="#" alt="">Bipin</a> & I craft technology products. This site chronicles my thoughts, stories and ideas.</h2>
                 <p><SocialLinks /></p>
-                <hr />
             </StyledIndexBanner>)
     }
 }
