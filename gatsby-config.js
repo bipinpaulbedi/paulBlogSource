@@ -22,7 +22,31 @@ module.exports = {
       },
     },
     {
-      resolve: `gatsby-transformer-remark`,      
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        trackingId: "UA-132358148-1",
+        // Puts tracking script in the head instead of the body
+        head: false,
+        // Setting this parameter is optional
+        anonymize: true,
+        // Setting this parameter is also optional
+        respectDNT: true,
+        // Avoids sending pageview hits from custom paths
+        exclude: ["/preview/**", "/do-not-track/me/too/"],
+        // Enables Google Optimize using your container Id
+        optimizeId: "",
+        // Enables Google Optimize Experiment ID
+        experimentId: "",
+        // Set Variation ID. 0 for original 1,2,3....
+        variationId: "0",
+        // Any additional create only fields (optional)
+        sampleRate: 5,
+        siteSpeedSampleRate: 10,
+        cookieDomain: "www.bipinpaulbedi.com",
+      },
+    },
+    {
+      resolve: `gatsby-transformer-remark`,
       options: {
         plugins: [
           {
@@ -63,9 +87,9 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-react-svg',
       options: {
-          rule: {
-            include: /assets/
-          }
+        rule: {
+          include: /assets/
+        }
       }
     },
     'gatsby-plugin-offline',
