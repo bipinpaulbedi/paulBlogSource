@@ -11,7 +11,7 @@ date: "2019-01-28T00:00:00.000Z"
 
 Microservice has been a game changer in software development in the last few years, yet it remains a grey area when it comes decision around maintainability and implementation of microservices. The evangelists behind microservice approach have built the case around speed, scalability and cohesion stating in that a microservice Change is easy, Units are small, scalability is semi-infinite. So what is Microservice architecture? Microservices — also known as the microservice architecture — is an architectural style that structures an application as a collection of loosely coupled services, which implement business capabilities.
 
-We will discuss and summarize some of the implementation factors that have a big impact on indicators of success in your project/software delivery viz:
+We will discuss and summarise some of the implementation factors that have a big impact on indicators of success in your project/software delivery viz:
 
 **Law of repository management**
 
@@ -20,13 +20,13 @@ One of the most active moving parts of microservices is code repositories. They 
 * Mono Repository i.e. keep all the services in the same repository
 * Multiple Repositories i.e. keep separate repositories for each of the services
 
-Majority of microservices evolve over a period of time and it has been observed that based on team and organisation structures derives the strategy adopted for code management. Usually, it naturally tends towards multiple repository pattern due to diverse practices followed in an organization among various units. This results in poor code reusability but also provides clear boundaries of ownership. The problem of reusability can be resolved by implementing a re-usable package, e.g. nugets for .net or npm for node etc. As the number of services grows it becomes difficult to debug and cross teams development. Moreover, overall platform knowledge becomes fragmented and abstract due to focused development teams.
+Majority of microservices evolve over a period of time and it has been observed that based on team and organisation structures derives the strategy adopted for code management. Usually, it naturally tends towards multiple repository pattern due to diverse practices followed in an organisation among various units. This results in poor code re-usability but also provides clear boundaries of ownership. The problem of re-usability can be resolved by implementing a re-usable package, e.g. nugets for .net or npm for node etc. As the number of services grows it becomes difficult to debug and cross teams development. Moreover, overall platform knowledge becomes fragmented and abstract due to focused development teams.
 
-For a larger project, it is recommended to use Mono repository with clear segregation of domain functionality and shared core reusability. This brings standardization in development style and practices. It provides better integration capabilities and debugging at the cost of a larger code base. Most programming framework provides a modular development approach where we can leverage best of both worlds of mono repo for development and multi repo for build and release.
+For a larger project, it is recommended to use Mono repository with clear segregation of domain functionality and shared core re-usability. This brings standardisation in development style and practices. It provides better integration capabilities and debugging at the cost of a larger code base. Most programming framework provides a modular development approach where we can leverage best of both worlds of mono repo for development and multi repo for build and release.
 
 **Law of separation of concern**
 
-The most common dilemma that microservice bring into an architects plate is regarding granularity of functionality. As per recommended practice, the domain driven development leads to correct size of bounded context which is articulated based on various business activities and influence. Usually, in the real world, it has been noticed that business units are generated based on software boundaries. Nevertheless using microservices does not imply less code, rather it focuses on maintainability and scalability. If you are planning to create a microservice for each functionality then it is definitely planning for disaster. Though segregations shall be based on the business domain but under special scenarios it is absolutely fine to deviate and create a separate service based on technical feature, e.g. email service, notification service etc.
+The most common dilemma that microservice bring into an architects plate is regarding granularity of functionality. As per recommended practice, the domain driven development leads to correct size of bounded context which is articulated based on various business activities and influence. Usually, in the real world, it has been noticed that business units are generated based on software boundaries. Nevertheless using microservices does not imply less code, rather it focuses on maintainability and scalability. If you are planning to create a microservice for each functionality then it is definitely planning for disaster. Though segregation shall be based on the business domain but under special scenarios it is absolutely fine to deviate and create a separate service based on technical feature, e.g. email service, notification service etc.
 
 The mutual independence across multiple microservices is the core principle behind this architecture. Each service shall ideally implement its own data persistence and caching capabilities. The owner service defines the strategy to create, manipulate and consume service. The external services should not be entertaining data access directly but shall only pass through owner service interfaces only.
 
@@ -54,9 +54,9 @@ There are two ways of coordination sagas:
 
 **Law of scalable deployment**
 
-Easy deployment and scalability is the key feature that bought microservices into the architects toolbox. There are various containerisation frameworks/application that can compile into the deployable image that is ready to scale. Application containerization is an OS-level virtualization method used to deploy and run distributed applications without launching an entire virtual machine (VM) for each app. Multiple isolated applications or services run on a single host and access the same OS kernel. Application containers include the runtime components -- such as files, environment variables and libraries -- necessary to run the desired software. Application containers consume fewer resources than a comparable deployment on virtual machines because containers share resources without a full operating system to underpin each app.
+Easy deployment and scalability is the key feature that bought microservices into the architects toolbox. There are various containerisation frameworks/application that can compile into the deployable image that is ready to scale. Application containerisation is an OS-level virtualisation method used to deploy and run distributed applications without launching an entire virtual machine (VM) for each app. Multiple isolated applications or services run on a single host and access the same OS kernel. Application containers include the runtime components -- such as files, environment variables and libraries -- necessary to run the desired software. Application containers consume fewer resources than a comparable deployment on virtual machines because containers share resources without a full operating system to underpin each app.
 
-The most common app containerization technology is Docker, specifically the open source Docker Engine and container based on universal runtime runC. The main competitive offering is CoreOS' rkt container engine that relies on the App Container (appc) spec as its open, standard container format, but it also can execute Docker container images.
+The most common app containerisation technology is Docker, specifically the open source Docker Engine and container based on universal runtime runC. The main competitive offering is CoreOS' rkt container engine that relies on the App Container (appc) spec as its open, standard container format, but it also can execute Docker container images.
 
 Though containerisation is not required to develop and run microservices, but these two concepts have been tied together as complementary services to generate maximum benefit. The recommended practice is to deploy services using orchestrator such as Azure Kubernetes services, AWS Fargate where that can create an instance for public or private registry such as docker hub, Azure container service etc. You can deploy multiple containers on one host or have one host per container.
 
@@ -68,7 +68,7 @@ Since this dynamic addition or removal of images may result is multiple end-poin
 
 When working on a greenfield project multiple design patterns help us structure the system. But following key principles are must have for robust system viz:
 
-* Resilience - When a system is under faulty state due to certain unexpected events, the microservice shall be monitored correctly and a new backup service shall immediately become active to minimize the loss of data. If the service or backup is not available then alternate application to keep track of operation shall cover during the downtime. Failure in one service shall not affect other.
+* Resilience - When a system is under faulty state due to certain unexpected events, the microservice shall be monitored correctly and a new backup service shall immediately become active to minimise the loss of data. If the service or backup is not available then alternate application to keep track of operation shall cover during the downtime. Failure in one service shall not affect other.
 
 * Failure - This is an extension of the above-mentioned principle. If a service fails then the dependent service shall have some mechanism to track status and reduce resource wastage. The service might fail temporarily due to some network issue, thus a retry policy shall be applied. A more advanced mechanism would be implementing circuit breaker where after a certain retry it stops sending more message to failed microservice and only passes certain requests in between to check for resume the status.
 
@@ -82,7 +82,7 @@ When working on a greenfield project multiple design patterns help us structure 
 
 When transitioning from a brownfield project it requires more effort to make sure the stability of the system is not affected. In these scenarios, the Strangler pattern comes to the rescue. The Strangler pattern is based on an analogy to a vine that strangles a tree that it’s wrapped around. This solution works well with web applications, where a call goes back and forth, and for each URI call, a service can be broken into different domains and hosted as separate services. The idea is to do it one domain at a time. This creates two separate applications that live side by side in the same URI space. Eventually, the newly refactored application “strangles” or replaces the original application until finally, you can shut off the monolithic application.
 
-Apart from strangler, an anti-corruption layer implements a façade between new and legacy applications, to ensure that the design of a new application is not limited by dependencies on legacy systems.
+Apart from strangler, an anti-corruption layer implements a facade between new and legacy applications, to ensure that the design of a new application is not limited by dependencies on legacy systems.
 
 **Law of implementation patterns**
 
@@ -93,7 +93,7 @@ Image Source : [Microsoft blog](https://azure.microsoft.com/en-au/blog/design-pa
 The eight core widely used microservices are that every architect shall know for high-performance systems includes
 
 * Ambassador can be used to offload common client connectivity tasks such as monitoring, logging, routing, and security (such as TLS) in a language agnostic way.
-* Anti-corruption layer implements a façade between new and legacy applications, to ensure that the design of a new application is not limited by dependencies on legacy systems.
+* Anti-corruption layer implements a facade between new and legacy applications, to ensure that the design of a new application is not limited by dependencies on legacy systems.
 * Backends for Frontends creates separate backend services for different types of clients, such as desktop and mobile. That way, a single backend service doesn’t need to handle the conflicting requirements of various client types. This pattern can help keep each microservice simple, by separating client-specific concerns.
 * Bulkhead isolates critical resources, such as connection pool, memory, and CPU, for each workload or service. By using bulkheads, a single workload (or service) can’t consume all of the resources, starving others. This pattern increases the resiliency of the system by preventing cascading failures caused by one service.
 * Gateway Aggregation aggregates requests to multiple individual microservices into a single request, reducing chattiness between consumers and services.
@@ -116,6 +116,6 @@ With the implementation of multiple microservices, traditional methods of monito
 * Alert on service performance, not container performance.
 * Monitor services that are elastic and multi-location.
 * Monitor APIs.
-* Map your monitoring to your organizational structure.
+* Map your monitoring to your organisational structure.
 
-By Practicing the above laws an architect can create a robust solution using microservices.
+By Practising the above laws an architect can create a robust solution using microservices.
