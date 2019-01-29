@@ -30,19 +30,9 @@ module.exports = {
         // Setting this parameter is optional
         anonymize: true,
         // Setting this parameter is also optional
-        respectDNT: true,
+        respectDNT: false,
         // Avoids sending pageview hits from custom paths
-        exclude: ["/preview/**", "/do-not-track/me/too/"],
-        // Enables Google Optimize using your container Id
-        optimizeId: "",
-        // Enables Google Optimize Experiment ID
-        experimentId: "",
-        // Set Variation ID. 0 for original 1,2,3....
-        variationId: "0",
-        // Any additional create only fields (optional)
-        sampleRate: 5,
-        siteSpeedSampleRate: 10,
-        cookieDomain: "www.bipinpaulbedi.com",
+        exclude: ["/preview/**", "/do-not-track/me/too/"]
       },
     },
     {
