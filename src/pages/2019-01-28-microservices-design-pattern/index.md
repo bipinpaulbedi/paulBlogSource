@@ -118,4 +118,4 @@ With the implementation of multiple microservices, traditional methods of monito
 * Monitor APIs.
 * Map your monitoring to your organisational structure.
 
-By Practising the above laws an architect can create a robust solution using microservices.
+By practising the above laws an architect can create a robust solution using microservices.
