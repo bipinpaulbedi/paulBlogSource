@@ -21,7 +21,7 @@ export default class IndexPost extends React.PureComponent {
     const groupedPosts = R.groupBy((ele) => { return ele.node.frontmatter.year }, posts);
     const elems = Object.keys(groupedPosts).sort().reverse();
     return (<StyledLatest>
-      Latest though, story or idea...
+      Latest thought, story or idea...
       {elems.map((ele) => {
         return (<React.Fragment>
           <div>{ele}</div>
