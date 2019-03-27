@@ -87,4 +87,4 @@ We keep on adding ingredients to the curry and food is left with no taste. Let�
 * Silver bullet - Assuming that a favourite technical solution can solve a larger process or problem.
 * Tester driven development - Projects in which new requirements are specified in bug reports.
 
-Phew… don’t stop here, explore more on internet as there can be more pitfalls that you might be already digging.
+Phew… don’t stop here, explore more on internet as there can be more pitfalls that you might be already digging. Please share you findings in the comments section below.
