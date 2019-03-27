@@ -61,7 +61,7 @@ We keep on adding ingredients to the curry and food is left with no taste. Letâ€
 * Action at distance - Unexpected interaction between widely separated parts of system.
 * Blind faith - Lack of checking of correctness of a bug fix or result of a subroutine.
 * Boat anchor - Retaining a part of a system that is no longer has any use.
-* Busy spin - Consuming cpu while waiting for something to happen, usually by repeated checking rather than message passing.
+* Busy spin - Consuming CPU while waiting for something to happen, usually by repeated checking rather than message passing.
 * Caching failure - Forgetting to reset an error flag when an error has been corrected.
 * Cargo cult programming - Using patterns and methods without understanding why.
 * Coding by exception - Adding a new code to handle each special case as it is recognised.
