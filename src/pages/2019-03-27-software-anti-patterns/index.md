@@ -3,7 +3,7 @@ title: 57 counterproductive software design practices - anti patterns.
 categories: design-patterns
 tags: [microservices, design-patterns, technology, article, anti-patterns]
 comments: true
-subTitle: architects black book for microservices implementation
+subTitle: deciding what not to do is as important as deciding what to do
 date: "2019-03-27T00:00:00.000Z"
 ---
 
@@ -34,19 +34,19 @@ We keep on adding ingredients to the curry and food is left with no taste. Letâ€
 * Inner - platform effect - A software so customisable as to become poor replica of software development platform.
 * Input kludge - Failing to specify and implement handling of possibly invalid inputs.
 * Interface bloat - making an interface so powerful that it is extremely difficult to implement.
-* Magic pushbutton - Coding implementation logic directly within interface code, without using abstraction.
+* Magic push button - Coding implementation logic directly within interface code, without using abstraction.
 * Race hazard - Failing to see consequences of different orders of events.
 * Stovepipe system -  A barely maintainable assemblage of ill-related components.
 
 **OOD anti-patterns**
 
-* Anemic domain model - Use of domain model without business knowledge.
-* Basebean - Inheriting functionality from utility class rather than delegating to it.
+* Anaemic domain model - Use of domain model without business knowledge.
+* Base bean - Inheriting functionality from utility class rather than delegating to it.
 * Call super - Requiring subclasses to call a superclassâ€™s overridden method.
-* Circle ellipse problem - Subtyping variable-types on the bases of value-subtypes.
+* Circle ellipse problem - Sub typing variable-types on the bases of value-subtypes.
 * Circular dependency - Introducing unnecessary direct or indirect mutual dependencies between objects.
 * Constant interface - using interface to define constants.
-* God object - Concentrating too many functionality in a single part of design.
+* God object - Concentrating too many functionalities in a single part of design.
 * Object cesspool - Reusing objects whose state does not confirm to the contract of reuse.
 * Object orgy - Failing to properly encapsulate objects permitting unrestricted access to their internals.
 * Poltergeists - Objects whose sole purpose is to pass information to another object.
@@ -79,7 +79,7 @@ We keep on adding ingredients to the curry and food is left with no taste. Letâ€
 * Copy-paste programming. Copying (modifying) and pasting existing code rather than implementing generic solution.
 * Golden hammering - Assuming that a favourite solution is universally applicable.
 * Improbability factor -  Assuming that it is improbably that a known error will occur.
-* NHI syndrome - The tendency towards reinventing the wheel, assuming it does not exists here before.
+* NHI syndrome - The tendency towards reinventing the wheel, assuming it does not exist here before.
 * Premature optimisation -  Coding early on for a perceived efficiency, sacrificing good design, maintainability, and sometimes even real world efficiency.
 * Programming by permutation - Trying to approach a solution by successively modifying the code to see if it works.
 * Reinventing the wheel - Failing to adopt an existing, adequate solution.
